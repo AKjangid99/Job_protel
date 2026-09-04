@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { dummyUser, USE_DUMMY_DATA } from "@/utils/dummyData";
 
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     loading: false,
-    user: null,
+    user: USE_DUMMY_DATA ? dummyUser : null,
   },
   reducers: {
     setLoading: (state, action) => {

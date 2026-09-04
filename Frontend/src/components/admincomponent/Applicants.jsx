@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setAllApplicants } from "@/redux/applicationSlice";
 import { APPLICATION_API_ENDPOINT } from "@/utils/data";
+import { dummyApplicants, USE_DUMMY_DATA } from "@/utils/dummyData";
 import Navbar from "../components_lite/Navbar";
 
 const Applicants = () => {
@@ -23,6 +24,9 @@ const Applicants = () => {
         console.log(res.data);
       } catch (error) {
         console.log(error);
+        if (USE_DUMMY_DATA) {
+          dispatch(setAllApplicants(dummyApplicants));
+        }
       }
     };
     fetchAllApplicants();

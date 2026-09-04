@@ -58,7 +58,7 @@ const CompaniesTable = () => {
             <span>No Companies Added</span>
           ) : (
             filterCompany?.map((company) => (
-              <TableRow key={company.id}>
+              <TableRow key={company._id || company.id}>
                 <TableCell>
                   <Avatar>
                     <AvatarImage

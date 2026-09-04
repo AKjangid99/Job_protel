@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { dummyJobs, dummyAppliedJobs, dummySingleJob, dummyAdminJobs, USE_DUMMY_DATA } from "@/utils/dummyData";
 
 const initialState = {
-  allJobs: [],
-  allAdminJobs: [], // This will hold
-  singleJob: null, // This will hold the job details when a user clicks on a job
+  allJobs: USE_DUMMY_DATA ? dummyJobs : [],
+  allAdminJobs: USE_DUMMY_DATA ? dummyAdminJobs : [], // This will hold
+  singleJob: USE_DUMMY_DATA ? dummySingleJob : null, // This will hold the job details when a user clicks on a job
   searchJobByText: "",
-  allAppliedJobs: [], // This will hold
+  allAppliedJobs: USE_DUMMY_DATA ? dummyAppliedJobs : [], // This will hold
   searchedQuery: "",
 };
 

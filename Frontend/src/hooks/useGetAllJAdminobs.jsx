@@ -1,5 +1,6 @@
 import { setAllAdminJobs } from "@/redux/jobSlice";
 import { JOB_API_ENDPOINT } from "@/utils/data";
+import { dummyAdminJobs, USE_DUMMY_DATA } from "@/utils/dummyData";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -22,11 +23,19 @@ const useGetAllAdminJobs = () => {
           // Updated success check
           dispatch(setAllAdminJobs(res.data.jobs));
         } else {
-          setError("Failed to fetch jobs.");
+          if (USE_DUMMY_DATA) {
+            dispatch(setAllAdminJobs(dummyAdminJobs));
+          } else {
+            setError("Failed to fetch jobs.");
+          }
         }
       } catch (error) {
         console.error("Fetch Error:", error);
-        setError(error.message || "An error occurred.");
+        if (USE_DUMMY_DATA) {
+          dispatch(setAllAdminJobs(dummyAdminJobs));
+        } else {
+          setError(error.message || "An error occurred.");
+        }
       } finally {
         setLoading(false);
       }

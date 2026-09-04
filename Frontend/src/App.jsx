@@ -18,6 +18,7 @@ import PostJob from "./components/admincomponent/PostJob";
 import Applicants from "./components/admincomponent/Applicants";
 import ProtectedRoute from "./components/admincomponent/ProtectedRoute";
 import Creator from "./components/creator/Creator.jsx";
+import DummyInitializer from "./components/DummyInitializer.jsx";
 
 const appRouter = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -118,6 +119,7 @@ const appRouter = createBrowserRouter([
 function App() {
   return (
     <div>
+      <DummyInitializer />
       <RouterProvider router={appRouter}></RouterProvider>
     </div>
   );

@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { dummyApplicants, USE_DUMMY_DATA } from "@/utils/dummyData";
 
 const applicationSlice = createSlice({
     name:'application',
     initialState:{
-        applicants:null,
+        applicants: USE_DUMMY_DATA ? dummyApplicants : null,
     },
     reducers:{
         setAllApplicants:(state,action) => {

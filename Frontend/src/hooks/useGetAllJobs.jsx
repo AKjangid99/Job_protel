@@ -1,5 +1,6 @@
 import { setAllJobs } from "@/redux/jobSlice";
 import { JOB_API_ENDPOINT } from "@/utils/data";
+import { dummyJobs, USE_DUMMY_DATA } from "@/utils/dummyData";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,11 +27,21 @@ const useGetAllJobs = () => {
           // Updated success check
           dispatch(setAllJobs(res.data.jobs));
         } else {
-          setError("Failed to fetch jobs.");
+          if (USE_DUMMY_DATA) {
+            console.warn("API returned no jobs, falling back to dummy data");
+            dispatch(setAllJobs(dummyJobs));
+          } else {
+            setError("Failed to fetch jobs.");
+          }
         }
       } catch (error) {
         console.error("Fetch Error:", error);
-        setError(error.message || "An error occurred.");
+        if (USE_DUMMY_DATA) {
+          console.warn("Using dummy jobs due to API error");
+          dispatch(setAllJobs(dummyJobs));
+        } else {
+          setError(error.message || "An error occurred.");
+        }
       } finally {
         setLoading(false);
       }

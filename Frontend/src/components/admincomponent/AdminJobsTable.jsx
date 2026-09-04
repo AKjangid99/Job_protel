@@ -63,7 +63,7 @@ const AdminJobsTable = () => {
             <span>No Job Added</span>
           ) : (
             filterJobs?.map((job) => (
-              <TableRow key={job.id}>
+              <TableRow key={job._id || job.id}>
                 <TableCell>{job?.company?.name}</TableCell>
                 <TableCell>{job.title}</TableCell>
                 <TableCell>{job.createdAt.split("T")[0]}</TableCell>
